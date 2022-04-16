@@ -32,6 +32,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8491EFBD280ABBB700ADD71D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8491EFBE280ABBBB00ADD71D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8491EFBF280ABBC000ADD71D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84AEFCF7280697D6002FEDF7 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8491EFC0280ABBC300ADD71D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		84AEFCE9280697D6002FEDF7 = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				84AEFCF5280697D6002FEDF7 /* SoloSetApp.swift */,
-				84AEFCF7280697D6002FEDF7 /* ContentView.swift */,
+				8491EFC0280ABBC300ADD71D /* Utils */,
+				8491EFBF280ABBC000ADD71D /* Views */,
+				8491EFBE280ABBBB00ADD71D /* ViewModels */,
+				8491EFBD280ABBB700ADD71D /* Models */,
 				84AEFCF9280697D8002FEDF7 /* Assets.xcassets */,
 				84AEFCFB280697D8002FEDF7 /* Preview Content */,
 			);
