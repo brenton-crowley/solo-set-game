@@ -53,15 +53,32 @@ struct SoloSetGame {
     
     mutating func selectCard(id:Int) {
         
-        // only select a card if available
+        // deselect all selected cards if count is 3 regardless of match
+        if selectedCards.count == 3 { selectedCards.forEach({
+            self.cards[$0.id].isSelected = false })
+        }
         
-        // validate set
-        
+        // TODO: Maybe put in a check here to only set if not matched.
         self.cards[id].isSelected = true
+        
+        // check to see if we have a set
+        if isSet() {
+            selectedCards.forEach({ self.cards[$0.id].isMatched = true })
+        }
+    }
+    
+    mutating func deselectCard(id:Int) {
+
+        // only deselect if cards if selected cards is less than 3
+        guard selectedCards.count < 3 else { return }
+        
+        self.cards[id].isSelected = false
     }
     
     /// Returns true if all the features of the selected cards are either the same OR all different
     func isSet() -> Bool {
+        
+        guard selectedCards.count == 3 else { return false }
         
         // Create an array of sets based on the features of the selected cards.
         let featureSets = [
@@ -101,6 +118,7 @@ struct SoloSetGame {
         let number:FeatureState
         
         var isSelected = false
+        var isMatched = false
         
     }
 }
