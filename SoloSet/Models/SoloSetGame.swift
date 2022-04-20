@@ -60,49 +60,34 @@ struct SoloSetGame {
         self.cards[id].isSelected = true
     }
     
+    /// Returns true if all the features of the selected cards are either the same OR all different
     func isSet() -> Bool {
         
+        // Create an array of sets based on the features of the selected cards.
+        let featureSets = [
+            setForFeature(\.shading),
+            setForFeature(\.colour),
+            setForFeature(\.shape),
+            setForFeature(\.number),
+        ]
         
-        
-        let shadingCount = setForFeature(\.shading).count
-        guard shadingCount == 1 || shadingCount == 3  else { return false }
-        
-        let colourCount = setForFeature(\.colour).count
-        guard colourCount == 1 || colourCount == 3  else { return false }
-        
-        let shapeCount = setForFeature(\.shape).count
-        guard shapeCount  == 1 || shapeCount == 3  else { return false }
-        
-        let numberCount = setForFeature(\.number).count
-        guard numberCount  == 1 || numberCount == 3  else { return false }
-        
-        return true
+        // If a set's length is either 1 or 3, then we have a match.
+        // This must be true for all sets. If any set has a count of 2, then false.
+        return featureSets.allSatisfy { $0.count == 1 || $0.count == 3 }
     }
     
+    /// Return a set for the feature (shape, number, shading, colour) within the selectedCards.
+    /// If the length of the set is 1, then the feature is the same across all the selected cards. -> Valid
+    /// If the length of the set is 3, then the feature is different across all the selected cards. -> Valid
+    /// If the length of the set is 2, then the feature is neither all the same nor all different -> Invalid
     private func setForFeature(_ feature:KeyPath<Card, FeatureState>) -> Set<FeatureState> {
         
         var matches = Set<FeatureState>()
         
-        switch feature {
-            
-        case \.shape:
-            
-            selectedCards.forEach { matches.insert($0.shape) }
-            
-        case \.colour:
-            
-            selectedCards.forEach { matches.insert($0.colour) }
-            
-        case \.number:
-            
-            selectedCards.forEach { matches.insert($0.number) }
-            
-        case \.shading:
-            selectedCards.forEach { matches.insert($0.shading) }
-        default:
-            break
-        }
-        
+        // Gets the featureState for each selected card and adds them to the set.
+        // Since sets must have unique values, no two values will be added twice.
+        selectedCards.forEach { matches.insert($0[keyPath: feature])}
+
         return matches
         
     }
