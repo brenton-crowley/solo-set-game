@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846D2BD9280E8A6200056255 /* SoloSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D2BD8280E8A6200056255 /* SoloSetGame.swift */; };
 		84AEFCF6280697D6002FEDF7 /* SoloSetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFCF5280697D6002FEDF7 /* SoloSetApp.swift */; };
 		84AEFCF8280697D6002FEDF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFCF7280697D6002FEDF7 /* ContentView.swift */; };
 		84AEFCFA280697D8002FEDF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AEFCF9280697D8002FEDF7 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		846D2BD8280E8A6200056255 /* SoloSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloSetGame.swift; sourceTree = "<group>"; };
 		84AEFCF2280697D6002FEDF7 /* SoloSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoloSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AEFCF5280697D6002FEDF7 /* SoloSetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloSetApp.swift; sourceTree = "<group>"; };
 		84AEFCF7280697D6002FEDF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +37,7 @@
 		8491EFBD280ABBB700ADD71D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				846D2BD8280E8A6200056255 /* SoloSetGame.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			files = (
 				84AEFCF8280697D6002FEDF7 /* ContentView.swift in Sources */,
 				84AEFCF6280697D6002FEDF7 /* SoloSetApp.swift in Sources */,
+				846D2BD9280E8A6200056255 /* SoloSetGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
