@@ -9,6 +9,11 @@ import Foundation
 
 struct SoloSetGame {
     
+    private struct Constants {
+        static let idealNumberOfCardsToDisplay = 15
+        static let newCardsToAdd = 3
+    }
+    
     enum FeatureState:Int, CaseIterable {
         case one = 1, two, three
         
@@ -18,9 +23,26 @@ struct SoloSetGame {
     
     enum Feature:CaseIterable { case shape, colour, shading, number }
     
-    private var cards:[Card]
+    private(set) var cards:[Card]
+    private var allowedNumberOfCards = Constants.idealNumberOfCardsToDisplay
     
-    var selectedCards:[Card] { self.cards.filter { $0.isSelected == true} }
+    private var selectedCards:[Card] { self.cards.filter { $0.isSelected == true} }
+    
+    // filter the first 15 cards in the deck that aren't matched.
+    // if 15 cards are not available
+    var deltCards:[SoloSetGame.Card] {
+        // filter the unmatched cards as they are the valid ones to be displayed or is selected
+        let possibleCardsToDisplay = cards.filter { !$0.isMatched || $0.isSelected }
+        return possibleCardsToDisplay.prefix(allowedNumberOfCards).map{ $0 }
+    }
+    
+    var cardsLeft:Int {
+        
+        let matchedCards = (cards.filter { !$0.isMatched }).count
+        
+        return cards.count - matchedCards
+        
+    }
     
     init(){
         self.cards = SoloSetGame.generateCards()
@@ -51,20 +73,33 @@ struct SoloSetGame {
         self.cards.shuffle()
     }
     
-    mutating func selectCard(id:Int) {
+    mutating func addMoreCards() {
+        
+        // replaces the selected cards if they make a set
+//        guard !isSet() else { deselectAllSelectedCards(); return }
+        
+        // if no set, add 3 more cards to the screen and maintain selection
+//        allowedNumberOfCards += Constants.newCardsToAdd
+    }
+    
+    mutating func selectCard(id:Int = -1) {
         
         // deselect all selected cards if count is 3 regardless of match
-        if selectedCards.count == 3 { selectedCards.forEach({
-            self.cards[$0.id].isSelected = false })
-        }
+        if selectedCards.count == 3 { deselectAllSelectedCards() }
         
         // TODO: Maybe put in a check here to only set if not matched.
-        self.cards[id].isSelected = true
+        if let _ = self.cards.first(where: { $0.id == id }) {
+            self.cards[id].isSelected = true
+        }
         
         // check to see if we have a set
         if isSet() {
             selectedCards.forEach({ self.cards[$0.id].isMatched = true })
         }
+    }
+    
+    mutating private func deselectAllSelectedCards() {
+        selectedCards.forEach({ self.cards[$0.id].isSelected = false })
     }
     
     mutating func deselectCard(id:Int) {

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct SoloSetApp: App {
+    
+    private var game:SoloGameModel = SoloGameModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SoloGameView()
+                .environmentObject(game)
         }
     }
 }
