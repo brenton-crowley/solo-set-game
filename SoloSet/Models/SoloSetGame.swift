@@ -18,7 +18,6 @@ struct SoloSetGame {
         case one = 1, two, three
         
         static var variations:ClosedRange<Int> { 1...FeatureState.allCases.count }
-        
     }
     
     enum Feature:CaseIterable { case shape, colour, shading, number }
@@ -38,7 +37,7 @@ struct SoloSetGame {
     
     var cardsLeft:Int {
         
-        let matchedCards = (cards.filter { !$0.isMatched }).count
+        let matchedCards = cards.filter { !$0.isMatched }.count
         
         return cards.count - matchedCards
         
@@ -46,8 +45,7 @@ struct SoloSetGame {
     
     init(){
         self.cards = SoloSetGame.generateCards()
-//        shuffleDeck()
-        print(cards)
+        shuffleDeck()
     }
     
     static func generateCards() -> [Card] {
@@ -76,38 +74,67 @@ struct SoloSetGame {
     mutating func addMoreCards() {
         
         // replaces the selected cards if they make a set
-//        guard !isSet() else { deselectAllSelectedCards(); return }
+        guard !isSet() else {
+            deselectAllSelectedCards()
+            //            setSelectedCardsToMatched()
+            
+            return
+        }
         
         // if no set, add 3 more cards to the screen and maintain selection
-//        allowedNumberOfCards += Constants.newCardsToAdd
+        allowedNumberOfCards += Constants.newCardsToAdd
     }
     
-    mutating func selectCard(id:Int = -1) {
-        
-        // deselect all selected cards if count is 3 regardless of match
-        if selectedCards.count == 3 { deselectAllSelectedCards() }
-        
-        // TODO: Maybe put in a check here to only set if not matched.
-        if let _ = self.cards.first(where: { $0.id == id }) {
-            self.cards[id].isSelected = true
-        }
+    mutating func selectCard(id:Int) {
         
         // check to see if we have a set
-        if isSet() {
-            selectedCards.forEach({ self.cards[$0.id].isMatched = true })
+        
+        // deselect all selected cards if count is 3 regardless of match
+        if selectedCards.count == 3 {
+            if isSet(),
+               allowedNumberOfCards > Constants.idealNumberOfCardsToDisplay  {
+                allowedNumberOfCards -= Constants.newCardsToAdd
+            }
+
+            deselectAllSelectedCards()            
         }
+        
+        // TODO: Maybe put in a check here to only set if not matched.
+        if let index = self.cards.firstIndex(where: { $0.id == id }) {
+            self.cards[index].isSelected = true
+        }
+        
+        if isSet() { setSelectedCardsToMatched() }
+    }
+    
+    mutating private func setSelectedCardsToMatched() {
+        
+        // if we have a set, set all the selected cards to is matched.
+        selectedCards.forEach({ selectedCard in
+            if let index = self.cards.firstIndex(where: { selectedCard.id == $0.id }) {
+                self.cards[index].isMatched = true
+            }
+        })
     }
     
     mutating private func deselectAllSelectedCards() {
-        selectedCards.forEach({ self.cards[$0.id].isSelected = false })
+        selectedCards.forEach { selectedCard in
+            if let index = self.cards.firstIndex(where: { card in
+                selectedCard.id == card.id
+            }) {
+                self.cards[index].isSelected = false
+            }
+        }
     }
     
     mutating func deselectCard(id:Int) {
-
+        
         // only deselect if cards if selected cards is less than 3
         guard selectedCards.count < 3 else { return }
         
-        self.cards[id].isSelected = false
+        if let index = self.cards.firstIndex(where: { $0.id == id }) {
+            self.cards[index].isSelected = false
+        }
     }
     
     /// Returns true if all the features of the selected cards are either the same OR all different
@@ -139,7 +166,7 @@ struct SoloSetGame {
         // Gets the featureState for each selected card and adds them to the set.
         // Since sets must have unique values, no two values will be added twice.
         selectedCards.forEach { matches.insert($0[keyPath: feature])}
-
+        
         return matches
         
     }

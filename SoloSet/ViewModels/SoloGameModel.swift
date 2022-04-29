@@ -71,9 +71,7 @@ class SoloGameModel:ObservableObject {
     @ViewBuilder
     public func contentForShape(_ shape:FeatureState, andShading shading:FeatureState) -> some View {
         
-        
-        
-        let shadedOpacity = 0.5
+        let shadedOpacity = 0.3
 
         switch shape {
             // circle
@@ -93,15 +91,15 @@ class SoloGameModel:ObservableObject {
 
         case .two:
 
-            let oval = RoundedRectangle(cornerRadius: 10, style: .continuous)
+            let diamond = Diamond()
 
             switch shading {
             case .one:
-                oval.stroke()
+                diamond.stroke()
             case .two:
-                oval
+                diamond
             case .three:
-                oval.opacity(shadedOpacity)
+                diamond.opacity(shadedOpacity)
             }
 
         case .three:

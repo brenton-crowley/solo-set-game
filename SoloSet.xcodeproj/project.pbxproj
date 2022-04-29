@@ -10,6 +10,8 @@
 		845E9BE6281A54CB00280465 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E9BE5281A54CB00280465 /* AspectVGrid.swift */; };
 		845E9BE8281A559000280465 /* SoloGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E9BE7281A559000280465 /* SoloGameModel.swift */; };
 		846D2BD9280E8A6200056255 /* SoloSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D2BD8280E8A6200056255 /* SoloSetGame.swift */; };
+		8485EA90281B986D002F3538 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485EA8F281B986D002F3538 /* CardView.swift */; };
+		8485EA93281B9B6D002F3538 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485EA92281B9B6D002F3538 /* Diamond.swift */; };
 		84AEFCF6280697D6002FEDF7 /* SoloSetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFCF5280697D6002FEDF7 /* SoloSetApp.swift */; };
 		84AEFCF8280697D6002FEDF7 /* SoloGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEFCF7280697D6002FEDF7 /* SoloGameView.swift */; };
 		84AEFCFA280697D8002FEDF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84AEFCF9280697D8002FEDF7 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 		845E9BE5281A54CB00280465 /* AspectVGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		845E9BE7281A559000280465 /* SoloGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloGameModel.swift; sourceTree = "<group>"; };
 		846D2BD8280E8A6200056255 /* SoloSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloSetGame.swift; sourceTree = "<group>"; };
+		8485EA8F281B986D002F3538 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8485EA92281B9B6D002F3538 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		84AEFCF2280697D6002FEDF7 /* SoloSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoloSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84AEFCF5280697D6002FEDF7 /* SoloSetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloSetApp.swift; sourceTree = "<group>"; };
 		84AEFCF7280697D6002FEDF7 /* SoloGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloGameView.swift; sourceTree = "<group>"; };
@@ -38,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8485EA91281B9B4F002F3538 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				8485EA92281B9B6D002F3538 /* Diamond.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
 		8491EFBD280ABBB700ADD71D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -57,8 +69,10 @@
 		8491EFBF280ABBC000ADD71D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8485EA91281B9B4F002F3538 /* Shapes */,
 				845E9BE5281A54CB00280465 /* AspectVGrid.swift */,
 				84AEFCF7280697D6002FEDF7 /* SoloGameView.swift */,
+				8485EA8F281B986D002F3538 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,7 +195,9 @@
 				845E9BE6281A54CB00280465 /* AspectVGrid.swift in Sources */,
 				845E9BE8281A559000280465 /* SoloGameModel.swift in Sources */,
 				84AEFCF8280697D6002FEDF7 /* SoloGameView.swift in Sources */,
+				8485EA93281B9B6D002F3538 /* Diamond.swift in Sources */,
 				84AEFCF6280697D6002FEDF7 /* SoloSetApp.swift in Sources */,
+				8485EA90281B986D002F3538 /* CardView.swift in Sources */,
 				846D2BD9280E8A6200056255 /* SoloSetGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
