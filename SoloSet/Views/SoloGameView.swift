@@ -18,6 +18,7 @@ struct SoloGameView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Text("Cards Left: \(game.cardsLeft)")
                 AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
                     CardView(card:card)
                         .onTapGesture {
@@ -34,7 +35,7 @@ struct SoloGameView: View {
                         withAnimation {
                             game.dealMoreCards()
                         }
-                    }.disabled(game.cardsLeft > 3 ? true : false)
+                    }.disabled(game.cardsLeft > 3 ? false : true)
                 }
             }
         }

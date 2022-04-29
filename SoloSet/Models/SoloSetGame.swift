@@ -37,15 +37,15 @@ struct SoloSetGame {
     
     var cardsLeft:Int {
         
-        let matchedCards = cards.filter { !$0.isMatched }.count
+        let matchedCards = cards.filter { $0.isMatched }
         
-        return cards.count - matchedCards
+        return cards.count - matchedCards.count
         
     }
     
     init(){
         self.cards = SoloSetGame.generateCards()
-        shuffleDeck()
+//        shuffleDeck()
     }
     
     static func generateCards() -> [Card] {
