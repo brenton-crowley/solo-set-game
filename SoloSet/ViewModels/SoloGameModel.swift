@@ -72,49 +72,43 @@ class SoloGameModel:ObservableObject {
     public func contentForShape(_ shape:FeatureState, andShading shading:FeatureState) -> some View {
         
         let shadedOpacity = 0.3
-
-        switch shape {
-            // circle
-        case .one:
-            let circle = Circle()
-
-            switch shading {
-            case .one: // empty
-                circle
-                    .stroke()
-            case .two: // solid
-                circle
-            case .three: // lowered opacity
-                circle
-                    .opacity(shadedOpacity)
-            }
-
-        case .two:
-
-            let diamond = Diamond()
-
-            switch shading {
-            case .one:
-                diamond.stroke()
-            case .two:
-                diamond
-            case .three:
-                diamond.opacity(shadedOpacity)
-            }
-
-        case .three:
-            let rect = Rectangle()
-
-            switch shading {
-            case .one:
-                rect.stroke()
-            case .two:
-                rect
-            case .three:
-                rect.opacity(shadedOpacity)
-            }
-        }
+        let shapeView = shapeViewForShapeFeature(shape)
         
+        switch shading {
+        case .one:
+            shapeView.stroke()
+        case .two:
+            shapeView
+        case .three:
+            shapeView.opacity(shadedOpacity)
+        }
     }
     
+    private func shapeViewForShapeFeature(_ shape:FeatureState) -> some Shape {
+        switch shape {
+        case .one:
+            return AnyShape(Circle())
+        case .two:
+            return AnyShape(Diamond())
+        case .three:
+            return AnyShape(Rectangle())
+        }
+    }
+    
+}
+
+// copy the shape and cast it as an AnyShape
+struct AnyShape: Shape {
+    init<S: Shape>(_ wrapped: S) {
+        _path = { rect in
+            let path = wrapped.path(in: rect)
+            return path
+        }
+    }
+
+    func path(in rect: CGRect) -> Path {
+        return _path(rect)
+    }
+
+    private let _path: (CGRect) -> Path
 }
