@@ -16,7 +16,6 @@ struct SoloGameView: View {
     @EnvironmentObject private var game:SoloGameModel
     
     var body: some View {
-        NavigationView {
             VStack {
                 Text("Cards Left: \(game.cardsLeft)")
                 AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
@@ -27,18 +26,27 @@ struct SoloGameView: View {
                             }
                         }
                 }
-            }
-            .navigationBarHidden(true)
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Button("Deal Cards") {
-                        withAnimation {
-                            game.dealMoreCards()
-                        }
-                    }.disabled(game.cardsLeft > 3 ? false : true)
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        game.startNewGame()
+                    } label: {
+                        Label("New Game", systemImage: "gobackward")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Spacer()
+                    Button {
+                        withAnimation { game.dealMoreCards() }
+                    } label: {
+                        Label("Deal Cards", systemImage: "plus.square.on.square")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(game.cardsLeft > 3 ? false : true)
+                    Spacer()
                 }
+                
             }
-        }
     }
 }
 

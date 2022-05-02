@@ -29,18 +29,18 @@ struct CardView: View {
     var body: some View {
         
         GeometryReader { geo in
+            let cardPadding = geo.size.height * 0.01
             ZStack {
                 
                 let cardColour = card.isSelected ? Constants.selectedColour : Constants.defaultColour
                 let lineWidth = card.isSelected ? Constants.selectedLineWidth : Constants.defaultLineWidth
-                let cardPadding = geo.size.height * 0.01
+                
                 
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .foregroundColor(.white)
                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
                     .stroke(lineWidth: lineWidth)
                     .foregroundColor(cardColour)
-                    .padding(cardPadding)
                 
                 let numElements:ClosedRange<Int> = 1...game.intForNumberFeatureState(card.number)
                 let content = game.contentForShape(card.shape, andShading: card.shading)
@@ -57,6 +57,7 @@ struct CardView: View {
                     }
                 }
             }
+            .padding(cardPadding)
         }
     }
 }

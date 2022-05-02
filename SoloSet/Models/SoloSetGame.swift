@@ -10,7 +10,7 @@ import Foundation
 struct SoloSetGame {
     
     private struct Constants {
-        static let idealNumberOfCardsToDisplay = 15
+        static let idealNumberOfCardsToDisplay = 12
         static let newCardsToAdd = 3
     }
     
@@ -29,23 +29,28 @@ struct SoloSetGame {
     
     // filter the first 15 cards in the deck that aren't matched.
     // if 15 cards are not available
-    var deltCards:[SoloSetGame.Card] {
+    public var deltCards:[SoloSetGame.Card] {
         // filter the unmatched cards as they are the valid ones to be displayed or is selected
         let possibleCardsToDisplay = cards.filter { !$0.isMatched || $0.isSelected }
         return possibleCardsToDisplay.prefix(allowedNumberOfCards).map{ $0 }
     }
     
-    var cardsLeft:Int {
+    public var cardsLeft:Int {
         
         let matchedCards = cards.filter { $0.isMatched }
         
-        return cards.count - matchedCards.count
+        return cards.count - matchedCards.count - deltCards.count
         
     }
     
     init(){
         self.cards = SoloSetGame.generateCards()
-//        shuffleDeck()
+        shuffleDeck()
+    }
+    
+    mutating public func reset() {
+        self.cards = SoloSetGame.generateCards()
+        shuffleDeck()
     }
     
     static func generateCards() -> [Card] {

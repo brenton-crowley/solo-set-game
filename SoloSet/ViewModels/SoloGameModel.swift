@@ -41,6 +41,11 @@ class SoloGameModel:ObservableObject {
         soloSet.addMoreCards()
     }
     
+    public func startNewGame() {
+        objectWillChange.send()
+        soloSet.reset()
+    }
+    
     // MARK: - SoloGameView Card data Pulls
     public func colourForColourFeatureState(_ featureState:FeatureState) -> Color {
         
@@ -71,7 +76,6 @@ class SoloGameModel:ObservableObject {
     @ViewBuilder
     public func contentForShape(_ shape:FeatureState, andShading shading:FeatureState) -> some View {
         
-        let shadedOpacity = 0.3
         let shapeView = shapeViewForShapeFeature(shape)
         
         switch shading {
@@ -80,7 +84,12 @@ class SoloGameModel:ObservableObject {
         case .two:
             shapeView
         case .three:
-            shapeView.opacity(shadedOpacity)
+//            shapeView.opacity(shadedOpacity)
+            StripeView()
+                .clipShape(shapeView)
+                .background(
+                    shapeView.stroke()
+                )
         }
     }
     
