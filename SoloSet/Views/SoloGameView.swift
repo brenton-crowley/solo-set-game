@@ -17,7 +17,6 @@ struct SoloGameView: View {
     
     var body: some View {
             VStack {
-                Text("Cards Left: \(game.cardsLeft)")
                 AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
                     CardView(card:card)
                         .onTapGesture {
@@ -53,7 +52,7 @@ struct SoloGameView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let model = SoloGameModel()
+        let model = SoloGameModel(shuffleDeck: false)
         
         SoloGameView()
             .environmentObject(model)

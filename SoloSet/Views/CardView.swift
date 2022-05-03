@@ -42,12 +42,12 @@ struct CardView: View {
                     .stroke(lineWidth: lineWidth)
                     .foregroundColor(cardColour)
                 
-                let numElements:ClosedRange<Int> = 1...game.intForNumberFeatureState(card.number)
+                let numElements:ClosedRange<Int> = 1...card.number.makeInt()
                 let content = game.contentForShape(card.shape, andShading: card.shading)
                 
                 VStack {
                     let height = geo.size.height / 5
-                    let width = geo.size.width / 4
+                    let width = geo.size.width / 3
                     ForEach(numElements, id: \.self) { i in
                         
                         // want to limit the frame of the content
@@ -75,7 +75,7 @@ struct CardView_Previews: PreviewProvider {
 //                                    shading: shading,
 //                                    number: number)
         let soloSet = SoloSetGame()
-        let card  = soloSet.cards[32]
+        let card  = soloSet.cards[42]
     
         CardView(card: card)
             .environmentObject(SoloGameModel())

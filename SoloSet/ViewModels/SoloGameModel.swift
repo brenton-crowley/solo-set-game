@@ -18,9 +18,9 @@ class SoloGameModel:ObservableObject {
     var cards:[Card] { soloSet.deltCards }
     var cardsLeft:Int { soloSet.cardsLeft }
     
-    init() {
+    init(shuffleDeck:Bool = true) {
         
-        soloSet = SoloSetGame()
+        soloSet = SoloSetGame(shuffle: shuffleDeck)
         
     }
     
@@ -59,19 +59,7 @@ class SoloGameModel:ObservableObject {
         }
         
     }
-    
-    public func intForNumberFeatureState(_ featureState:FeatureState) -> Int {
-        
-        switch featureState {
-        case .one:
-            return 1
-        case .two:
-            return 2
-        case .three:
-            return 3
-        }
-        
-    }
+
     
     @ViewBuilder
     public func contentForShape(_ shape:FeatureState, andShading shading:FeatureState) -> some View {
@@ -84,7 +72,6 @@ class SoloGameModel:ObservableObject {
         case .two:
             shapeView
         case .three:
-//            shapeView.opacity(shadedOpacity)
             StripeView()
                 .clipShape(shapeView)
                 .background(
@@ -100,7 +87,7 @@ class SoloGameModel:ObservableObject {
         case .two:
             return AnyShape(Diamond())
         case .three:
-            return AnyShape(Rectangle())
+            return AnyShape(Squiggle())
         }
     }
     
@@ -108,6 +95,7 @@ class SoloGameModel:ObservableObject {
 
 // copy the shape and cast it as an AnyShape
 struct AnyShape: Shape {
+    
     init<S: Shape>(_ wrapped: S) {
         _path = { rect in
             let path = wrapped.path(in: rect)

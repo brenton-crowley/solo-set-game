@@ -10,10 +10,10 @@ import SwiftUI
 struct StripeView: View {
     
     private struct Constants {
-        static let minStripeHeight:CGFloat = 5
+        static let minStripeHeight:CGFloat = 2
     }
     
-    var stripeHeightDivisor = CGFloat(40)
+    var stripeHeightDivisor = CGFloat(4)
     
     var body: some View {
         GeometryReader { geo in

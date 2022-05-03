@@ -9,15 +9,19 @@ import Foundation
 
 struct SoloSetGame {
     
+    /// Internal constants for a SoloSetGame
     private struct Constants {
         static let idealNumberOfCardsToDisplay = 12
         static let newCardsToAdd = 3
     }
     
+    /// An enum that is like a boolean but with three states.
     enum FeatureState:Int, CaseIterable {
         case one = 1, two, three
         
         static var variations:ClosedRange<Int> { 1...FeatureState.allCases.count }
+        
+        public func makeInt() -> Int { self.rawValue }
     }
     
     enum Feature:CaseIterable { case shape, colour, shading, number }
@@ -43,13 +47,15 @@ struct SoloSetGame {
         
     }
     
-    init(){
+    init(shuffle:Bool = true){
         self.cards = SoloSetGame.generateCards()
-        shuffleDeck()
+        
+        if shuffle { shuffleDeck() }
     }
     
     mutating public func reset() {
         self.cards = SoloSetGame.generateCards()
+        allowedNumberOfCards = Constants.idealNumberOfCardsToDisplay
         shuffleDeck()
     }
     
@@ -76,7 +82,7 @@ struct SoloSetGame {
         self.cards.shuffle()
     }
     
-    mutating func addMoreCards() {
+    mutating public func addMoreCards() {
         
         // replaces the selected cards if they make a set
         guard !isSet() else {
@@ -90,7 +96,7 @@ struct SoloSetGame {
         allowedNumberOfCards += Constants.newCardsToAdd
     }
     
-    mutating func selectCard(id:Int) {
+    mutating public func selectCard(id:Int) {
         
         // check to see if we have a set
         
@@ -104,7 +110,6 @@ struct SoloSetGame {
             deselectAllSelectedCards()            
         }
         
-        // TODO: Maybe put in a check here to only set if not matched.
         if let index = self.cards.firstIndex(where: { $0.id == id }) {
             self.cards[index].isSelected = true
         }

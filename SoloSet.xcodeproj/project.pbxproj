@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8403F85C2820A451000E0F11 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403F85B2820A451000E0F11 /* Squiggle.swift */; };
 		845E9BE6281A54CB00280465 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E9BE5281A54CB00280465 /* AspectVGrid.swift */; };
 		845E9BE8281A559000280465 /* SoloGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E9BE7281A559000280465 /* SoloGameModel.swift */; };
 		846D2BD9280E8A6200056255 /* SoloSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D2BD8280E8A6200056255 /* SoloSetGame.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8403F85B2820A451000E0F11 /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		845E9BE5281A54CB00280465 /* AspectVGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		845E9BE7281A559000280465 /* SoloGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloGameModel.swift; sourceTree = "<group>"; };
 		846D2BD8280E8A6200056255 /* SoloSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloSetGame.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				8485EA92281B9B6D002F3538 /* Diamond.swift */,
+				8403F85B2820A451000E0F11 /* Squiggle.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				845E9BE6281A54CB00280465 /* AspectVGrid.swift in Sources */,
 				845E9BE8281A559000280465 /* SoloGameModel.swift in Sources */,
 				84AEFCF8280697D6002FEDF7 /* SoloGameView.swift in Sources */,
+				8403F85C2820A451000E0F11 /* Squiggle.swift in Sources */,
 				8485EA93281B9B6D002F3538 /* Diamond.swift in Sources */,
 				84AEFCF6280697D6002FEDF7 /* SoloSetApp.swift in Sources */,
 				84D42FFE281FAD0B0011CCE1 /* StripeView.swift in Sources */,
